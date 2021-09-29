@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: daemonset-test
+  labels:
+    app: logging
+spec:
+  template:
+    metadata:
+      name: fluentd
+      labels:
+        app: logging
+    spec:
+      containers:
+      - name: fluentd
+        image: k8s.gcr.io/fluentd-elasticsearch:1.20
+  selector:
+    matchLabels:
+      app: logging
